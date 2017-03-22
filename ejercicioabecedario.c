@@ -18,20 +18,27 @@ int main(){
 		printf("Introduzca un numero entero y positivo:");
 		scanf("%d",&numero);
 
-	}while(numero<=0||numero>26);
+	}while(numero<=0||numero>TAM);
 
 	tamaño=numero*2;
 
 	for(i=0;i<numero;i++){
 		for (j=0;j<=tamaño;j++){
-			if(j==tamaño/2){
+
+			if(j==tamaño/2 && i!=(numero-1)){
 				printf(" ");
 			}
+
+			if(j==tamaño/2 && i==(numero-1)){
+				printf("*");
+			}
+
 			if(j<=i){
 				printf("%c",abecedario[j]);
 				
 			}else if((tamaño-1-j)<=i){
 				printf("%c",abecedario[tamaño-1-j]);
+
 			}else{
 				printf(" ");		
 			}
