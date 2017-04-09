@@ -1,66 +1,69 @@
+//LAURA GONZALEZ DEL RIO
+
 #include <stdio.h>
 #include <math.h>
 
-// Prueba clonar y modificación en github
-
 int menu();
-float area(int x1,int y1,int x2,int y2,int x3,int y3);
-float distancia(int x1,int y1,int x2, int y2);
+float area(float xlado1,float ylado1,float xlado2,float ylado2,float xlado3,float ylado3);
+float distancia(float x1,float y1,float x2, float y2);
 int sumaDivisores(int numero);
 int esAmigo(int amigo1,int amigo2);
 
 int main(){
 	int eleccion=0;
-	int xpunto1,ypunto1,xpunto2,ypunto2,xpunto3,ypunto3;
+	float xpunto1,ypunto1,xpunto2,ypunto2,xpunto3,ypunto3;
 	int numero1,numero2;
 	float triangulo=0.0;
 	int resultado=0;
-	eleccion=menu();
-	switch(eleccion){
-		case 1:
-			printf("Coordenada X del punto 1\n");
-			scanf("%d",&xpunto1);
-			printf("Coordenada Y del punto 1\n");
-			scanf("%d",&ypunto1);
-			printf("Coordenada X del punto 2\n");
-			scanf("%d",&xpunto2);
-			printf("Coordenada Y del punto 2\n");
-			scanf("%d",&ypunto2);
-			printf("Coordenada X del punto 3\n");
-			scanf("%d",&xpunto3);
-			printf("Coordenada Y del punto 3\n");
-			scanf("%d",&ypunto3);
-			triangulo=area(xpunto1,ypunto1,xpunto2,ypunto2,xpunto3,ypunto3);	
-			printf("El area del triangulo es %f:\n",triangulo);
-		break;
+	do{
+		eleccion=menu();
+		switch(eleccion){
+			case 1:
+				printf("Coordenada X del punto 1\n");
+				scanf("%f",&xpunto1);
+				printf("Coordenada Y del punto 1\n");
+				scanf("%f",&ypunto1);
+				printf("Coordenada X del punto 2\n");
+				scanf("%f",&xpunto2);
+				printf("Coordenada Y del punto 2\n");
+				scanf("%f",&ypunto2);
+				printf("Coordenada X del punto 3\n");
+				scanf("%f",&xpunto3);
+				printf("Coordenada Y del punto 3\n");
+				scanf("%f",&ypunto3);
+				triangulo=area(xpunto1,ypunto1,xpunto2,ypunto2,xpunto3,ypunto3);	
+				printf("El area del triangulo es %f:\n",triangulo);
+			break;
 
-		case 2:
-			do{
-				printf("Introduzca el primero numero \n");
-				scanf("%d",&numero1);
-				printf("introduzca el segundo numero\n");
-				scanf("%d",&numero2);
-				if(numero1<=0|| numero2<=0){
-					printf("Introduzca dos numero positivos y mayores de 0\n");
+			case 2:
+				do{
+					printf("Introduzca el primero numero \n");
+					scanf("%d",&numero1);
+					printf("introduzca el segundo numero\n");
+					scanf("%d",&numero2);
+					if(numero1<=0|| numero2<=0){
+						printf("Introduzca dos numero positivos y mayores de 0\n");
+					}
+				}while(numero1<=0|| numero2<=0);
+				resultado=esAmigo(numero1,numero2);
+
+				if (resultado==1){
+					printf("Los números %d y %d SON amigos\n",numero1,numero2);
+				}else{	
+					printf("Los números %d y %d NO son amigos\n",numero1,numero2);
 				}
-			}while(numero1<=0|| numero2<=0);
-			resultado=esAmigo(numero1,numero2);
+			break;
 
-			if (resultado==1){
-				printf("Los números %d y %d SON amigos\n",numero1,numero2);
-			}else{	
-				printf("Los números %d y %d NO son amigos\n",numero1,numero2);
+			case 3:
+				printf("Ha salido del programa\n");
+			break;
+
+			default:
+				printf("ERROR\n");
+			break;
 			}
-		break;
-
-		case 3:
-			printf("Ha salido del programa\n");
-		break;
-
-		default:
-			printf("ERROR\n");
-		break;
-	}
+	}while(eleccion!=3);
+	return 0;
 }
 
 
@@ -80,7 +83,7 @@ int menu(){
 	return opcion;
 }
 
-float area(int xlado1,int ylado1,int xlado2,int ylado2,int xlado3,int ylado3){
+float area(float xlado1,float ylado1,float xlado2,float ylado2,float xlado3,float ylado3){
 	float a=0.0,b=0.0,c=0.0;
 	float resultado=0.0;
 	float p=0.0;
@@ -93,7 +96,7 @@ float area(int xlado1,int ylado1,int xlado2,int ylado2,int xlado3,int ylado3){
 	return resultado;
 }
 
-float distancia(int x1,int y1,int x2,int y2){
+float distancia(float x1,float y1,float x2, float y2){
 	float lado=0.0;
 	lado=sqrt(pow((x2-x1),2)+pow((y2-y1),2));
 	return lado;
@@ -103,11 +106,9 @@ int sumaDivisores(int numero){
 	int i=0;
 	int suma=0;
 
-	for (i=1;i<=numero/2;i++){
+	for (i=1;i<=numero;i++){
 		if(numero%i==0){
-			suma=suma+numero;
-		}else{
-			suma=suma;
+			suma=suma+i;
 		}
 	}
 	return suma;
